@@ -1,0 +1,93 @@
+﻿<Window x:Class="devTalksWPF.Views.AdminHomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:devTalksWPF.Views"
+        mc:Ignorable="d"
+        Title="AdminHomeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/assets/devtalks-logo.png" Stretch="None" ></Image>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Déconnexion"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <TextBox Text="" Width="300"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <GroupBox Header="Actions sur Utilisateur">
+                <StackPanel>
+                    <Button Content="Gestion des Utilisateurs" Margin="5"></Button>
+                    <Button Command="{Binding TopicWindowCommand}" Content="Gestion des Topics" Margin="5"></Button>
+                    <Button Command="{Binding MessageWindowCommand}" Content="Gestion des Messages" Margin="5"></Button>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <GroupBox Header="Inscriptions Utilisateurs en attente de validation">
+                <StackPanel>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding ValidationsUtilisateurs}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" Width="50"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="70"></GridViewColumn>
+                                    <GridViewColumn Header="Nom" Width="160"></GridViewColumn>
+                                    <GridViewColumn Header="Prénom" Width="160"></GridViewColumn>
+                                    <GridViewColumn Header="Email" Width="185"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Valider" Margin="5" Width="100"></Button>
+                        <Button Content="Refuser" Margin="5" Width="100"></Button>
+                        <Button Content="Mettre en attente" Margin="5" Width="100"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <GroupBox Header="Messages en attente de validation">
+                <StackPanel>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding ValidationsMessages}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" Width="50"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="60"></GridViewColumn>
+                                    <GridViewColumn Header="Utilisateur" Width="150"></GridViewColumn>
+                                    <GridViewColumn Header="Topic" Width="150"></GridViewColumn>
+                                    <GridViewColumn Header="Détail" Width="215"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Valider" Margin="5" Width="100"></Button>
+                        <Button Content="Refuser" Margin="5" Width="100"></Button>
+                        <Button Content="Mettre en attente" Margin="5" Width="100"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+            <Button Content="Afficher les détails" Margin="5"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
