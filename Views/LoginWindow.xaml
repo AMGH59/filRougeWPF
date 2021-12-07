@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:devTalksWPF.Views"
         mc:Ignorable="d"
-        Title="Connexion" Height="250" Width="300">
+        Title="Connexion" Height="250" Width="350">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Image Source="/assets/devtalks-logo.png" Stretch="None" ></Image>
@@ -24,13 +24,13 @@
                     <Label Content="E-mail : " Grid.Row="0"></Label>
                     <Label Content="Mot de passe :"></Label>
                 </StackPanel>
-                <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                    <TextBox Grid.Column="1" Margin="4"></TextBox>
-                    <PasswordBox Margin="4"></PasswordBox>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="185">
+                    <TextBox Text="{Binding Email}" Grid.Column="1" Margin="4"></TextBox>
+                    <PasswordBox  Margin="4" PasswordChanged="PasswordBox_PasswordChanged"></PasswordBox>
+                    <Button Margin="4" Content="Se connecter" Command="{Binding LoginCommand}"></Button>
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <TextBlock Text="Message d'erreur" Grid.Row="2" VerticalAlignment="top" HorizontalAlignment="Center"></TextBlock>
-
+        <TextBlock  Text="{Binding Erreur}" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
     </Grid>
 </Window>

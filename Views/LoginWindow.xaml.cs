@@ -1,4 +1,5 @@
-﻿using System;
+﻿using devTalksWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace devTalksWPF.Views
         public LoginWindow()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
+        }
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }
