@@ -1,0 +1,97 @@
+﻿<Window x:Class="devTalksWPF.Views.TopicWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:devTalksWPF.Views"
+        mc:Ignorable="d"
+        Title="TopicWindow" Height="500" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox Text="Gestion des Topics"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Topic Id : "></Label>
+                    <TextBox Text="" Width="60"></TextBox>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="Actif" Margin="5"></RadioButton>
+                        <RadioButton Content="Inactif" Margin="5"></RadioButton>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="Auteur"></Label>
+                        <TextBox Text="" Width="100"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="Du : "></Label>
+                        <DatePicker></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="Au : "></Label>
+                        <DatePicker></DatePicker>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Label Content="Mots-clés : "></Label>
+                    <TextBox Text="" Width="250"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <Button Content="Rechercher" Width="100"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" Width="30"></GridViewColumn>
+                        <GridViewColumn Header="Statut" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="User Id" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="User Surname" Width="120"></GridViewColumn>
+                        <GridViewColumn Header="User Name" Width="110"></GridViewColumn>
+                        <GridViewColumn Header="Email" Width="130"></GridViewColumn>
+                        <GridViewColumn Header="Date" Width="90"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <!--<StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Supprimer" Width="125"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Afficher topic" Width="125"></Button>
+        </StackPanel>-->
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="5">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Supprimer" Width="125" Margin="5"></Button>
+                <Button Content="Afficher topic" Width="125" Margin="5"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

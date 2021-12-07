@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using devTalksWPF.Classes;
+using devTalksWPF.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -16,21 +17,27 @@ namespace devTalksWPF.ViewModels
         //private Topic topic;
         //private Forum forum;
 
-        //public AdminHomeViewModel()
-        //{
-        //    TopicWindowCommand = new RelayCommand(OpenTopic);
-        //}
+        public AdminHomeViewModel()
+        {
+            TopicWindowCommand = new RelayCommand(OpenTopic);
+            MessageWindowCommand = new RelayCommand(OpenMessage);
+        }
 
 
-        //public ICommand TopicWindowCommand { get; set; }
-        //public ICommand MessageWindowCommand { get; set; }
+        public ICommand TopicWindowCommand { get; set; }
+        public ICommand MessageWindowCommand { get; set; }
 
 
-        //public void OpenTopic()
-        //{
-        //    TopicWindowCommand twindow = new TopicWindowCommand();
-        //    twindow.Show();
-        //}
+        public void OpenTopic()
+        {
+            TopicWindow tWindow = new TopicWindow();
+            tWindow.Show();
+        }
+        public void OpenMessage()
+        {
+            MessageWindow mWindow = new MessageWindow();
+            mWindow.Show();
+        }
 
-    }
+}
 }

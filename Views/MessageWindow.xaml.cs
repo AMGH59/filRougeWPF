@@ -1,5 +1,4 @@
-﻿using devTalksWPF.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +15,13 @@ using System.Windows.Shapes;
 namespace devTalksWPF.Views
 {
     /// <summary>
-    /// Logique d'interaction pour AdminHomeWindow.xaml
+    /// Logique d'interaction pour MessageWindow.xaml
     /// </summary>
-    public partial class AdminHomeWindow : Window
+    public partial class MessageWindow : Window
     {
-        public AdminHomeWindow()
+        public MessageWindow()
         {
             InitializeComponent();
-            DataContext = new AdminHomeViewModel();
         }
     }
 }
