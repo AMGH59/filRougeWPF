@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
 {
-    class Message
+    public class Message
     {
         private int id;
-        private int id_topic;
-        private int id_user;
         private string body;
         private DateTime date;
+        private int id_topic;
+        private int id_user;
+
+        [ForeignKey("id_topic")]
+        public virtual Topic topic { get; set; }
+        [ForeignKey("id_user")]
+        public virtual User user { get; set; }
+
+
         private enum State
         {
             Reported,

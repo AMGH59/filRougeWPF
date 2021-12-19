@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
 {
-    class User
+    public class User
     {
         private int id;
-        private string name, surname, email, password;
+        private string firstName, lastName, email, password;
         private enum State
         {
             Waiting,
@@ -22,8 +23,8 @@ namespace devTalksWPF.Classes
         }
 
         public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Surname { get => surname; set => surname = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string LastName { get => lastName; set => lastName = value; }
         public string Email { get => email; set => email = value; }
         public string Password { get => password; set => password = value; }
     }

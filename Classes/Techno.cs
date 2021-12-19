@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
 {
-    class Techno
+    public class Techno
     {
         private int id;
         private string description;
