@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }
