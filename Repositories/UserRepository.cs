@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 
 namespace devTalksWPF.Repositories
 {
-    class UserRepository : IRepository<User>
+    class UserRepository : BaseRepository,IRepository<User>
     {
         public User FinById(int id)
         {
-            return DataContext.Instance.Users.Find(id);
+            return _dataContext.Instance.Users.Find(id);
         }
 
         public bool Save(User user)
         {
-            DataContext.Instance.Users.Add(user);
-            return DataContext.Instance.SaveChanges() > 0;
+            _dataContext.Instance.Users.Add(user);
+            return _dataContext.Instance.SaveChanges() > 0;
         }
 
         public IEnumerable<User> Search(Func<User, bool> predicate)
         {
-            return DataContext.Instance.Users.Where(u => predicate(u)).ToList();
+            return _dataContext.Instance.Users.Where(u => predicate(u)).ToList();
         }
 
         public bool Update(User user)
         {
-            return DataContext.Instance.SaveChanges() > 0;
+            return _dataContext.Instance.SaveChanges() > 0;
         }
 
     }

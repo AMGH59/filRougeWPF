@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 
 namespace devTalksWPF.Repositories
 {
-    class MessageRepository : IRepository<Message>
+    class MessageRepository : BaseRepository,IRepository<Message>
     {
         public Message FinById(int id)
         {
-            return DataContext.Instance.Messages.Find(id);
+            return _dataContext.Instance.Messages.Find(id);
         }
 
         public bool Save(Message message)
         {
-            DataContext.Instance.Messages.Add(message);
-            return DataContext.Instance.SaveChanges()>0;
+            _dataContext.Instance.Messages.Add(message);
+            return _dataContext.Instance.SaveChanges()>0;
         }
 
         public IEnumerable<Message> Search(Func<Message, bool> predicate)
         {
-            return DataContext.Instance.Messages.Where(m=>predicate(m)).ToList();
+            return _dataContext.Instance.Messages.Where(m=>predicate(m)).ToList();
         }
 
         public bool Update(Message message)
         {
-            return DataContext.Instance.SaveChanges() > 0;
+            return _dataContext.Instance.SaveChanges() > 0;
         }
 
         public bool Remove(Message message)
         {
-            DataContext.Instance.Messages.Remove(message);
-            return DataContext.Instance.SaveChanges() > 0;
+            _dataContext.Instance.Messages.Remove(message);
+            return _dataContext.Instance.SaveChanges() > 0;
         }
     }
 }

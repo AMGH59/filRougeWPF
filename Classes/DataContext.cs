@@ -17,7 +17,7 @@ namespace devTalksWPF.Classes
 
         public DataContext() : base() { }
 
-        public static DataContext Instance
+        public DataContext Instance
         {
             get {
                 if (instance == null)
