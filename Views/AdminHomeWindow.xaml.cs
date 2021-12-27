@@ -25,5 +25,10 @@ namespace devTalksWPF.Views
             InitializeComponent();
             DataContext = new AdminHomeViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
