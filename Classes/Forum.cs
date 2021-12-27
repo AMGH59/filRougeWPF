@@ -9,7 +9,7 @@ namespace devTalksWPF.Classes
     class Forum
     {
         private List<Topic> topics;
-        private List<User> user;
+        private List<User> users;
         private Admin admin;
         private Topic topic;
 
@@ -19,7 +19,7 @@ namespace devTalksWPF.Classes
         }
 
         public List<Topic> Topics { get => topics; set => topics = value; }
-        public List<User> User { get => user; set => user = value; }
+        public List<User> Users { get => users; set => users = value; }
         public Admin Admin { get => admin; set => admin = value; }
         public Topic Topic { get => topic; set => topic = value; }
     }

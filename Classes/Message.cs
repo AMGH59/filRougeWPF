@@ -15,13 +15,14 @@ namespace devTalksWPF.Classes
         private int id_topic;
         private int id_user;
 
-        [ForeignKey("id_topic")]
+
+        [ForeignKey("Id_topic")]
         public virtual Topic topic { get; set; }
-        [ForeignKey("id_user")]
+        [ForeignKey("Id_user")]
         public virtual User user { get; set; }
 
 
-        private enum State
+        public enum StateMessageEnum
         {
             Reported,
             Accept,
@@ -36,5 +37,6 @@ namespace devTalksWPF.Classes
         public int Id_user { get => id_user; set => id_user = value; }
         public string Body { get => body; set => body = value; }
         public DateTime Date { get => date; set => date = value; }
+        public StateMessageEnum StateMessage { get; set; }
     }
 }
