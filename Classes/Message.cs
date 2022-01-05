@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
@@ -12,14 +11,14 @@ namespace devTalksWPF.Classes
         private int id;
         private string body;
         private DateTime date;
-        private int id_topic;
-        private int id_user;
+        public int Id_topic { get; set; }
+        public int Id_user { get; set; }
 
 
         [ForeignKey("Id_topic")]
-        public virtual Topic topic { get; set; }
+        public virtual Topic Topic { get; set; }
         [ForeignKey("Id_user")]
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
 
         public enum StateMessageEnum
@@ -30,13 +29,13 @@ namespace devTalksWPF.Classes
         }
         public Message()
         {
-
+            Date = DateTime.Now;
+            StateMessage = StateMessageEnum.Accept;
         }
         public int Id { get => id; set => id = value; }
-        public int Id_topic { get => id_topic; set => id_topic = value; }
-        public int Id_user { get => id_user; set => id_user = value; }
         public string Body { get => body; set => body = value; }
         public DateTime Date { get => date; set => date = value; }
         public StateMessageEnum StateMessage { get; set; }
     }
 }
+

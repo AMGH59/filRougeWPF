@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
@@ -13,18 +12,8 @@ namespace devTalksWPF.Classes
         public DbSet<Message> Messages { get; set; }
         public DbSet<Techno> Technos { get; set; }
         public DbSet<Topic> Topics { get; set; }
-        private static DataContext instance = null;
 
         public DataContext() : base() { }
-
-        public DataContext Instance
-        {
-            get {
-                if (instance == null)
-                    instance = new DataContext();
-                return instance;
-            }
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

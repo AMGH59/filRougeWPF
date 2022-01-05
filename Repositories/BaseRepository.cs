@@ -11,9 +11,9 @@ namespace devTalksWPF.Repositories
     {
         protected DataContext _dataContext;
 
-        public BaseRepository()
+        public BaseRepository(DataContext dataContext)
         {
-            _dataContext = new DataContext();
+            _dataContext = dataContext;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using devTalksWPF.Classes;
+using devTalksWPF.Repositories;
 using devTalksWPF.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -9,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
+using System.Threading;
+
 
 namespace devTalksWPF.ViewModels
 {
@@ -17,26 +21,38 @@ namespace devTalksWPF.ViewModels
         private string email,erreur;
         private Admin admin;
         LoginWindow currentLoginWindow;
+        UserRepository userRepository;
 
         public LoginViewModel(LoginWindow currentLoginWindow)
         {
+            userRepository = new UserRepository(new DataContext());
             LoginCommand = new RelayCommand(Login);
             CurrentLoginWindow = currentLoginWindow;
         }
 
         public void Login()
         {
-            if (Password == "admin")
+            User user = default(User);
+            Task.Run(() =>
             {
-                admin = new Admin();
-                AdminHomeWindow AdminWindow = new AdminHomeWindow();
-                AdminWindow.Show();
-                CurrentLoginWindow.Close();
-            }else
-            {
-                Erreur = "E-mail ou mot de passe incorrect.";
-                RaisePropertyChanged("Erreur");
-            }
+                user = userRepository.SearchOne(u => u.Password == Password && u.Email == Email);
+                CurrentLoginWindow.Dispatcher.Invoke(() =>
+                {
+                    if (user != default(User))
+                    {
+                        admin = new Admin();
+                        AdminHomeWindow AdminWindow = new AdminHomeWindow();
+                        AdminWindow.Show();
+                        CurrentLoginWindow.Close();
+                    }
+                    else
+                    {
+                        Erreur = "E-mail ou mot de passe incorrect.";
+                        RaisePropertyChanged("Erreur");
+                    }
+                });
+
+            });
 
         }
 

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
@@ -13,6 +10,7 @@ namespace devTalksWPF.Classes
         private int id;
         private string firstName, lastName, email, password;
         private bool isAdmin, isLogged;
+        private DateTime registrationDate;
         public enum StateEnum
         {
             Waiting,
@@ -22,6 +20,7 @@ namespace devTalksWPF.Classes
 
         public User()
         {
+            registrationDate = DateTime.Now;
         }
 
         public int Id { get => id; set => id = value; }
@@ -32,5 +31,7 @@ namespace devTalksWPF.Classes
         public StateEnum StateUser { get; set; }
         public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
         public bool IsLogged { get => isLogged; set => isLogged = value; }
+        public DateTime RegistrationDate { get => registrationDate; set => registrationDate = value; }
     }
 }
+
