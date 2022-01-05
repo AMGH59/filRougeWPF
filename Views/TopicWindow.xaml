@@ -29,7 +29,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Topic Id : "></Label>
-                    <TextBox Text="" Width="60"></TextBox>
+                    <TextBox  Width="60" Text="{Binding TopicId}"></TextBox>
                     <StackPanel Orientation="Horizontal">
                         <RadioButton Content="Actif" Margin="5"></RadioButton>
                         <RadioButton Content="Inactif" Margin="5"></RadioButton>
@@ -43,38 +43,38 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Auteur"></Label>
-                        <TextBox Text="" Width="100"></TextBox>
+                        <TextBox Text="{Binding Author}" Width="100"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Du : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding StartDate}"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Au : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding EndDate}"></DatePicker>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                     <Label Content="Mots-clés : "></Label>
-                    <TextBox Text="" Width="250"></TextBox>
+                    <TextBox Text="{Binding KeyWord}" Width="250"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="5">
-                    <Button Content="Rechercher" Width="100"></Button>
+                    <Button Content="Rechercher" Width="100" Command="{Binding SearchCommand}"></Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <ListView>
+            <ListView ItemsSource="{Binding Topics}" SelectedItem="{Binding SelectedTopic}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" Width="30"></GridViewColumn>
-                        <GridViewColumn Header="Statut" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="User Id" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="User Surname" Width="120"></GridViewColumn>
-                        <GridViewColumn Header="User Name" Width="110"></GridViewColumn>
-                        <GridViewColumn Header="Email" Width="130"></GridViewColumn>
-                        <GridViewColumn Header="Date" Width="90"></GridViewColumn>
+                        <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
+                        <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
+                        <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding Author.FirstName}"></GridViewColumn>
+                        <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding Author.LastName}"></GridViewColumn>
+                        <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Author.Email}"></GridViewColumn>
+                        <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

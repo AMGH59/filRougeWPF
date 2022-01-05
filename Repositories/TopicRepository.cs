@@ -25,10 +25,10 @@ namespace devTalksWPF.Repositories
             return _dataContext.SaveChanges() > 0;
         }
 
-        public IEnumerable<Topic> Search(Func<Topic, bool> predicate)
-        {
-            return _dataContext.Topics.Include(t => t.Author).Include(t => t.Responses).Include(t => t.Technos).Where(m => predicate(m)).ToList();
-        }
+        //public IEnumerable<Topic> Search(Func<Topic, bool> predicate)
+        //{
+        //    return _dataContext.Topics.Include(t => t.Author).Include(t => t.Responses).Include(t => t.Technos).Where(m => predicate(m)).ToList();
+        //}
 
         public bool Update(Topic topic)
         {
