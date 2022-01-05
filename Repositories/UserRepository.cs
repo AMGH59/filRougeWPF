@@ -29,14 +29,14 @@ namespace devTalksWPF.Repositories
             return _dataContext.SaveChanges() > 0;
         }
 
-        public IEnumerable<User> Search(Func<User, bool> predicate)
-        {
-            return _dataContext.Users.Where(u => predicate(u)).ToList();
-        }
+        //public IEnumerable<User> Search(Func<User, bool> predicate)
+        //{
+        //    return _dataContext.Users.Where(u => predicate(u)).ToList();
+        //}
 
         public IEnumerable<User> Search(Expression<Func<User, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dataContext.Users.Where(predicate).ToList();
         }
 
         public User SearchOne(Expression<Func<User, bool>> searchMethode)

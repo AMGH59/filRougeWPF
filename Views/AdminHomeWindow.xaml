@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:devTalksWPF.Views"
         mc:Ignorable="d"
-        Title="AdminHomeWindow" Height="450" Width="800">
+        Title="AdminHomeWindow" Height="550" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -41,21 +41,21 @@
             <GroupBox Header="Inscriptions Utilisateurs en attente de validation">
                 <StackPanel>
                     <StackPanel>
-                        <ListView ItemsSource="{Binding ValidationsUtilisateurs}">
+                        <ListView ItemsSource="{Binding ReportedUsers}" SelectedItem="{Binding SelectedUser}" Height="150">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Id" Width="50"></GridViewColumn>
-                                    <GridViewColumn Header="Date" Width="70"></GridViewColumn>
-                                    <GridViewColumn Header="Nom" Width="160"></GridViewColumn>
-                                    <GridViewColumn Header="Prénom" Width="160"></GridViewColumn>
-                                    <GridViewColumn Header="Email" Width="185"></GridViewColumn>
+                                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="70" DisplayMemberBinding="{Binding RegistrationDate}"></GridViewColumn>
+                                    <GridViewColumn Header="Nom" Width="160" DisplayMemberBinding="{Binding LastName}"></GridViewColumn>
+                                    <GridViewColumn Header="Prénom" Width="160" DisplayMemberBinding="{Binding FirstName}"></GridViewColumn>
+                                    <GridViewColumn Header="Email" Width="185" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Valider" Margin="5" Width="100"></Button>
-                        <Button Content="Refuser" Margin="5" Width="100"></Button>
+                        <Button Content="Valider" Margin="5" Width="100" Command="{Binding BanCommand}"></Button>
+                        <Button Content="Refuser" Margin="5" Width="100" Command="{Binding DontBanCommand}"></Button>
                         <Button Content="Mettre en attente" Margin="5" Width="100"></Button>
                     </StackPanel>
                 </StackPanel>
@@ -66,21 +66,21 @@
             <GroupBox Header="Messages en attente de validation">
                 <StackPanel>
                     <StackPanel>
-                        <ListView ItemsSource="{Binding ValidationsMessages}">
+                        <ListView ItemsSource="{Binding ReportedMessage}" SelectedItem="{Binding SelectedMessage}" Height="150">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Id" Width="50"></GridViewColumn>
-                                    <GridViewColumn Header="Date" Width="60"></GridViewColumn>
-                                    <GridViewColumn Header="Utilisateur" Width="150"></GridViewColumn>
-                                    <GridViewColumn Header="Topic" Width="150"></GridViewColumn>
+                                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="60" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                    <GridViewColumn Header="Utilisateur" Width="150" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
+                                    <GridViewColumn Header="Topic" Width="150" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
                                     <GridViewColumn Header="Détail" Width="215"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Valider" Margin="5" Width="100"></Button>
-                        <Button Content="Refuser" Margin="5" Width="100"></Button>
+                        <Button Content="Valider" Margin="5" Width="100" Command="{Binding DisallowMessageCommand}"></Button>
+                        <Button Content="Refuser" Margin="5" Width="100" Command="{Binding AcceptMessageCommand}"></Button>
                         <Button Content="Mettre en attente" Margin="5" Width="100"></Button>
                     </StackPanel>
                 </StackPanel>

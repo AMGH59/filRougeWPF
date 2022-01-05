@@ -17,6 +17,7 @@ namespace devTalksWPF.Classes
 
         }
 
+
         public List<Topic> Topics { get => topics; set => topics = value; }
         public List<User> Users { get => users; set => users = value; }
         //public Admin Admin { get => admin; set => admin = value; }

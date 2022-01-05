@@ -23,10 +23,10 @@ namespace devTalksWPF.Repositories
             return _dataContext.SaveChanges() > 0;
         }
 
-        public IEnumerable<Message> Search(Func<Message, bool> predicate)
-        {
-            return _dataContext.Messages.Where(m=>predicate(m)).ToList();
-        }
+        //public IEnumerable<Message> Search(Func<Message, bool> predicate)
+        //{
+        //    return _dataContext.Messages.Where(m=>predicate(m)).ToList();
+        //}
 
         public bool Update(Message message)
         {

@@ -35,7 +35,7 @@ namespace devTalksWPF.ViewModels
             User user = default(User);
             Task.Run(() =>
             {
-                user = userRepository.SearchOne(u => u.Password == Password && u.Email == Email);
+                user = userRepository.SearchOne(u => u.Password == Password && u.Email == Email && u.IsAdmin);
                 CurrentLoginWindow.Dispatcher.Invoke(() =>
                 {
                     if (user != default(User))
