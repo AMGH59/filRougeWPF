@@ -28,7 +28,7 @@ namespace devTalksWPF.ViewModels
             KeyWord = "";
 
             SearchCommand = new RelayCommand(SearchAction);
-
+            DeleteCommand = new RelayCommand(DeleteAction);
         }
 
         public ObservableCollection<Message> Messages { get; set; }
@@ -39,6 +39,8 @@ namespace devTalksWPF.ViewModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+        public Message SelectedMessage { get; set; }
 
 
         public void SearchAction()
@@ -54,6 +56,23 @@ namespace devTalksWPF.ViewModels
                 (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
             }
             RaisePropertyChanged("Messages");
+        }
+        public void DeleteAction()
+        {
+            if (SelectedMessage != null)
+            {
+                SelectedMessage.StateMessage = Message.StateMessageEnum.Disallow;
+            }
+            Task.Run(() =>
+            {
+                if (messageRepository.Update(SelectedMessage))
+                {
+                    _currentWindow.Dispatcher.Invoke(() =>
+                    {
+                        SearchAction();
+                    });
+                }
+            });
         }
 
     }

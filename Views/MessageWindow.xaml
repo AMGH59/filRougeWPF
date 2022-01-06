@@ -65,7 +65,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <ListView ItemsSource="{Binding Messages}">
+            <ListView ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
@@ -90,7 +90,7 @@
 
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Supprimer" Width="125" Margin="5"></Button>
+                <Button Content="Supprimer" Width="125" Margin="5" Command="{Binding DeleteCommand}"></Button>
                 <Button Content="Afficher message" Width="125" Margin="5"></Button>
             </StackPanel>
         </StackPanel>
