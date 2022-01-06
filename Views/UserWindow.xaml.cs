@@ -25,5 +25,10 @@ namespace devTalksWPF.Views
             InitializeComponent();
             DataContext = new UserViewModel(ahvm,this);
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

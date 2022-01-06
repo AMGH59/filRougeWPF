@@ -73,15 +73,16 @@
 
         <ScrollViewer Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5"  HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
             <StackPanel >
-                <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
+                <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" SelectionChanged="ListView_SelectionChanged">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                            <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateUser}"></GridViewColumn>
-                            <GridViewColumn Header="Prénom" Width="120" DisplayMemberBinding="{Binding FirstName}"></GridViewColumn>
-                            <GridViewColumn Header="Nom" Width="110" DisplayMemberBinding="{Binding LastName}"></GridViewColumn>
-                            <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                            <GridViewColumn Header="Inscription" Width="90" DisplayMemberBinding="{Binding RegistrationDate}"></GridViewColumn>
+                            <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding IsAdmin}"/>
+                            <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateUser}"/>
+                            <GridViewColumn Header="Prénom" Width="120" DisplayMemberBinding="{Binding FirstName}"/>
+                            <GridViewColumn Header="Nom" Width="110" DisplayMemberBinding="{Binding LastName}"/>
+                            <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Inscription" Width="90" DisplayMemberBinding="{Binding RegistrationDate}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
