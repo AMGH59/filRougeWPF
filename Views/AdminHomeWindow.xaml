@@ -31,7 +31,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <GroupBox Header="Actions sur Utilisateur">
                 <StackPanel>
-                    <Button Content="Gestion des Utilisateurs" Margin="5"></Button>
+                    <Button Command="{Binding UserWindowCommand}" Content="Gestion des Utilisateurs" Margin="5"></Button>
                     <Button Command="{Binding TopicWindowCommand}" Content="Gestion des Topics" Margin="5"></Button>
                     <Button Command="{Binding MessageWindowCommand}" Content="Gestion des Messages" Margin="5"></Button>
                 </StackPanel>

@@ -20,7 +20,7 @@ namespace devTalksWPF.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _dataContext.Users.ToList();
         }
 
         public bool Save(User user)

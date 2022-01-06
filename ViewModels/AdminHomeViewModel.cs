@@ -15,7 +15,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace devTalksWPF.ViewModels
 {
-    class AdminHomeViewModel : ViewModelBase
+    public class AdminHomeViewModel : ViewModelBase
     {
         //private User user;
         //private Topic topic;
@@ -26,6 +26,7 @@ namespace devTalksWPF.ViewModels
         {
             TopicWindowCommand = new RelayCommand(OpenTopic);
             MessageWindowCommand = new RelayCommand(OpenMessage);
+            UserWindowCommand = new RelayCommand(OpenUser);
             userRepository = new UserRepository(new DataContext());
             ReportedUsers = new ObservableCollection<User>(userRepository.Search(u => u.StateUser == User.StateEnum.Waiting));
             BanCommand = new RelayCommand(ActionBanUser);
@@ -116,6 +117,11 @@ namespace devTalksWPF.ViewModels
             MessageWindow mWindow = new MessageWindow();
             mWindow.Show();
         }
+        public void OpenUser()
+        {
+            UserWindow uWindow = new UserWindow(this);
+            uWindow.Show();
+        }
 
         public ObservableCollection<User> ReportedUsers { get; set; }
         public ObservableCollection<Message> ReportedMessage { get; set; }
@@ -125,6 +131,7 @@ namespace devTalksWPF.ViewModels
         public ICommand DontBanCommand { get; set; }
         public ICommand TopicWindowCommand { get; set; }
         public ICommand MessageWindowCommand { get; set; }
+        public ICommand UserWindowCommand { get; set; }
         public ICommand DisallowMessageCommand { get; set; }
         public ICommand AcceptMessageCommand { get; set; }
     }
