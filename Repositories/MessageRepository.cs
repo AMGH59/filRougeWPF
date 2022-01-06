@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace devTalksWPF.Repositories
 {
@@ -52,7 +53,7 @@ namespace devTalksWPF.Repositories
 
         public IEnumerable<Message> GetAll()
         {
-            throw new NotImplementedException();
+            return _dataContext.Messages.Include(m => m.User).ToList();
         }
     }
 }
