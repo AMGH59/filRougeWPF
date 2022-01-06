@@ -35,51 +35,33 @@ namespace devTalksWPF.ViewModels
 
         public void OpenAction()
         {
-            if (SelectedTopic != null)
-            {
-                SelectedTopic.StateTopic = Topic.StateEnum.InProgress;
-            }
-            Task.Run(() =>
-            {
-                if (topicRepository.Update(SelectedTopic))
-                {
-                    _currentWindow.Dispatcher.Invoke(() =>
-                    {
-                        SearchAction();
-                    });
-                }
-            });
+            UpdateTopic(Topic.StateEnum.InProgress);
         }
         public void DeletedAction()
         {
-            if (SelectedTopic != null)
-            {
-                SelectedTopic.StateTopic = Topic.StateEnum.Disallow;
-            }
-            Task.Run(() =>
-            {
-                if (topicRepository.Update(SelectedTopic))
-                {
-                    _currentWindow.Dispatcher.Invoke(() =>
-                    {
-                        SearchAction();
-                    });
-                }
-            });
+            UpdateTopic(Topic.StateEnum.Disallow);
         }
         public void ResolvedAction()
         {
+            UpdateTopic(Topic.StateEnum.Resolved);
+        }
+
+        public void UpdateTopic(Topic.StateEnum stateEnum)
+        {
             if (SelectedTopic != null)
             {
-                SelectedTopic.StateTopic = Topic.StateEnum.Resolved;
+                SelectedTopic.StateTopic = stateEnum;
             }
             Task.Run(() =>
             {
                 if (topicRepository.Update(SelectedTopic))
                 {
+                    Topic TempTopic = SelectedTopic;
                     _currentWindow.Dispatcher.Invoke(() =>
                     {
-                        SearchAction();
+                        int i = Topics.IndexOf(SelectedTopic);
+                        Topics.Remove(SelectedTopic);
+                        Topics.Insert(i, TempTopic);
                     });
                 }
             });
@@ -87,17 +69,24 @@ namespace devTalksWPF.ViewModels
 
         public void SearchAction()
         {
-            if(Int32.TryParse(TopicId,out int TopicIdInt))
+            Task.Run(() =>
             {
-                Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Id == TopicIdInt && t.Date >= StartDate && t.Date <= EndDate && 
-                (t.Author.FirstName.Contains(Author) || t.Author.LastName.Contains(Author)) && t.Body.Contains(KeyWord)));
-            }
-            else
-            {
-                Topics = new ObservableCollection<Topic>(topicRepository.Search(t =>t.Date >= StartDate && t.Date <= EndDate &&
-                (t.Author.FirstName.Contains(Author) || t.Author.LastName.Contains(Author)) && t.Body.Contains(KeyWord)));
-            }
-            RaisePropertyChanged("Topics");
+                if (Int32.TryParse(TopicId, out int TopicIdInt))
+                {
+                    Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Id == TopicIdInt && t.Date >= StartDate && t.Date <= EndDate &&
+                    (t.Author.FirstName.Contains(Author) || t.Author.LastName.Contains(Author)) && t.Body.Contains(KeyWord)));
+                }
+                else
+                {
+                    Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Date >= StartDate && t.Date <= EndDate &&
+                    (t.Author.FirstName.Contains(Author) || t.Author.LastName.Contains(Author)) && t.Body.Contains(KeyWord)));
+                }
+                _currentWindow.Dispatcher.Invoke(() =>
+                {
+                    RaisePropertyChanged("Topics");
+                });
+            });
+
 
         }
 
