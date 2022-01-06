@@ -45,31 +45,44 @@ namespace devTalksWPF.ViewModels
 
         public void SearchAction()
         {
-            if (Int32.TryParse(MessageId, out int messageIdInt))
+            Task.Run(() =>
             {
-                Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
-                (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord) ));
-            }
-            else
-            {
-                Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
-                (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
-            }
-            RaisePropertyChanged("Messages");
+                if (Int32.TryParse(MessageId, out int messageIdInt))
+                {
+                    Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
+                    (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                }
+                else
+                {
+                    Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
+                    (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                }
+                _currentWindow.Dispatcher.Invoke(() =>
+                {
+                    RaisePropertyChanged("Messages");
+                });
+            });
         }
         public void DeleteAction()
         {
+            UpdateTopic(Message.StateMessageEnum.Disallow);
+        }
+        public void UpdateTopic(Message.StateMessageEnum stateMessageEnum)
+        {
             if (SelectedMessage != null)
             {
-                SelectedMessage.StateMessage = Message.StateMessageEnum.Disallow;
+                SelectedMessage.StateMessage = stateMessageEnum;
             }
             Task.Run(() =>
             {
                 if (messageRepository.Update(SelectedMessage))
                 {
+                    Message TempMessage = SelectedMessage;
                     _currentWindow.Dispatcher.Invoke(() =>
                     {
-                        SearchAction();
+                        int i = Messages.IndexOf(SelectedMessage);
+                        Messages.Remove(SelectedMessage);
+                        Messages.Insert(i, TempMessage);
                     });
                 }
             });
