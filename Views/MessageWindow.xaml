@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:devTalksWPF.Views"
+        xmlns:local="clr-namespace:devTalksWPF.Views" xmlns:l="clr-namespace:devTalksWPF.Tools"
         mc:Ignorable="d"
         Title="MessageWindow" Height="500" Width="800">
+    <Window.Resources>
+        <l:EnumBooleanConverter x:Key="StateMessageEnum" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -31,8 +34,9 @@
                     <Label Content="Message Id : "></Label>
                     <TextBox Text="{Binding MessageId}" Width="60"></TextBox>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Actif" Margin="5"></RadioButton>
-                        <RadioButton Content="Inactif" Margin="5"></RadioButton>
+                        <RadioButton Content="Accepté" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Accept}"></RadioButton>
+                        <RadioButton Content="Signalé" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Reported}"></RadioButton>
+                        <RadioButton Content="Effacé" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Disallow}"></RadioButton>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
