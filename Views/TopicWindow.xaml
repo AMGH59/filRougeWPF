@@ -31,8 +31,9 @@
                     <Label Content="Topic Id : "></Label>
                     <TextBox  Width="60" Text="{Binding TopicId}"></TextBox>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Actif" Margin="5"></RadioButton>
-                        <RadioButton Content="Inactif" Margin="5"></RadioButton>
+                        <RadioButton GroupName="StateTopic" Content="Ouvert" Margin="5" ></RadioButton>
+                        <RadioButton GroupName="StateTopic" Content="Résolu" Margin="5"></RadioButton>
+                        <RadioButton GroupName="StateTopic" Content="Fermé" Margin="5" ></RadioButton>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -43,7 +44,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Auteur"></Label>
-                        <TextBox Text="{Binding Author}" Width="100"></TextBox>
+                        <TextBox Text="{Binding AuthorSearch}" Width="100"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Du : "></Label>
@@ -64,21 +65,23 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <ListView ItemsSource="{Binding Topics}" SelectedItem="{Binding SelectedTopic}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                        <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
-                        <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
-                        <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding Author.FirstName}"></GridViewColumn>
-                        <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding Author.LastName}"></GridViewColumn>
-                        <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Author.Email}"></GridViewColumn>
-                        <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </StackPanel>
+        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5"  HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+        <StackPanel >
+                <ListView ItemsSource="{Binding Topics}" SelectedItem="{Binding SelectedTopic}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                            <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
+                            <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
+                            <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding Author.FirstName}"></GridViewColumn>
+                            <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding Author.LastName}"></GridViewColumn>
+                            <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Author.Email}"></GridViewColumn>
+                            <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            </ScrollViewer>
 
         <!--<StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Supprimer" Width="125"></Button>
@@ -92,7 +95,7 @@
                 <Button Content="Ouvert" Width="125" Margin="5" Command="{Binding OpenCommand}"></Button>
                 <Button Content="Résolu" Width="125" Margin="5" Command="{Binding ResolvedCommand}"></Button>
                 <Button Content="Supprimé" Width="125" Margin="5" Command="{Binding DeletedCommand}"></Button>
-                <Button Content="Afficher topic" Width="125" Margin="5"></Button>
+                <Button Content="Afficher topic" Width="125" Margin="5" Command="{Binding TopicDetailCommand}"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>
