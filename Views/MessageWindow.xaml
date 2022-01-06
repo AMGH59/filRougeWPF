@@ -29,7 +29,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Message Id : "></Label>
-                    <TextBox Text="" Width="60"></TextBox>
+                    <TextBox Text="{Binding MessageId}" Width="60"></TextBox>
                     <StackPanel Orientation="Horizontal">
                         <RadioButton Content="Actif" Margin="5"></RadioButton>
                         <RadioButton Content="Inactif" Margin="5"></RadioButton>
@@ -43,23 +43,23 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Auteur"></Label>
-                        <TextBox Text="" Width="100"></TextBox>
+                        <TextBox Text="{Binding Author}" Width="100"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Du : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding StartDate}"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Au : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding EndDate}"></DatePicker>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                     <Label Content="Mots-clés : "></Label>
-                    <TextBox Text="" Width="250"></TextBox>
+                    <TextBox Text="{Binding KeyWord}" Width="250"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="5">
-                    <Button Content="Rechercher" Width="100"></Button>
+                    <Button Content="Rechercher" Width="100" Command="{Binding SearchCommand}"></Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
