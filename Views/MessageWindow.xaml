@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:devTalksWPF.Views"
+        xmlns:local="clr-namespace:devTalksWPF.Views" xmlns:l="clr-namespace:devTalksWPF.Tools"
         mc:Ignorable="d"
         Title="MessageWindow" Height="500" Width="800">
+    <Window.Resources>
+        <l:EnumBooleanConverter x:Key="StateMessageEnum" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -29,10 +32,11 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Message Id : "></Label>
-                    <TextBox Text="" Width="60"></TextBox>
+                    <TextBox Text="{Binding MessageId}" Width="60"></TextBox>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Actif" Margin="5"></RadioButton>
-                        <RadioButton Content="Inactif" Margin="5"></RadioButton>
+                        <RadioButton Content="Accepté" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Accept}"></RadioButton>
+                        <RadioButton Content="Signalé" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Reported}"></RadioButton>
+                        <RadioButton Content="Effacé" Margin="5" IsChecked="{Binding Path=StateMessage, Mode=TwoWay, Converter={StaticResource StateMessageEnum}, ConverterParameter=Disallow}"></RadioButton>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -43,39 +47,39 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Auteur"></Label>
-                        <TextBox Text="" Width="100"></TextBox>
+                        <TextBox Text="{Binding Author}" Width="100"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Du : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding StartDate}"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Au : "></Label>
-                        <DatePicker></DatePicker>
+                        <DatePicker SelectedDate="{Binding EndDate}"></DatePicker>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                     <Label Content="Mots-clés : "></Label>
-                    <TextBox Text="" Width="250"></TextBox>
+                    <TextBox Text="{Binding KeyWord}" Width="250"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="5">
-                    <Button Content="Rechercher" Width="100"></Button>
+                    <Button Content="Rechercher" Width="100" Command="{Binding SearchCommand}"></Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <ListView>
+            <ListView ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                        <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
-                        <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
+                        <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
+                        <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
                         <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding User.FirstName}"></GridViewColumn>
                         <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding User.LastName}"></GridViewColumn>
-                        <GridViewColumn Header="Email" Width="130"></GridViewColumn>
-                        <GridViewColumn Header="Date" Width="90"></GridViewColumn>
-                        <GridViewColumn Header="Topic Id" Width="50"></GridViewColumn>
+                        <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding User.Email}"></GridViewColumn>
+                        <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                        <GridViewColumn Header="Topic Id" Width="50" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -90,7 +94,9 @@
 
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Supprimer" Width="125" Margin="5"></Button>
+                <Button Content="Accepter" Width="125" Margin="5" Command="{Binding AcceptCommand}"></Button>
+                <Button Content="En attente" Width="125" Margin="5" Command="{Binding ReportCommand}"></Button>
+                <Button Content="Supprimer" Width="125" Margin="5" Command="{Binding DeleteCommand}"></Button>
                 <Button Content="Afficher message" Width="125" Margin="5"></Button>
             </StackPanel>
         </StackPanel>

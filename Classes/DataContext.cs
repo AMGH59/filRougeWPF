@@ -17,7 +17,7 @@ namespace devTalksWPF.Classes
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\coursDotNet;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\v-app;Integrated Security=True");
         }
     }
 }
