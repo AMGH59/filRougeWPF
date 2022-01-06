@@ -29,6 +29,8 @@ namespace devTalksWPF.ViewModels
 
             SearchCommand = new RelayCommand(SearchAction);
             DeleteCommand = new RelayCommand(DeleteAction);
+            ReportCommand = new RelayCommand(ReportAction);
+            AcceptCommand = new RelayCommand(AcceptAction);
         }
 
         public ObservableCollection<Message> Messages { get; set; }
@@ -39,6 +41,8 @@ namespace devTalksWPF.ViewModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand AcceptCommand { get; set; }
+        public ICommand ReportCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public Message SelectedMessage { get; set; }
 
@@ -63,11 +67,19 @@ namespace devTalksWPF.ViewModels
                 });
             });
         }
+        public void AcceptAction()
+        {
+            UpdateMessage(Message.StateMessageEnum.Accept);
+        }
+        public void ReportAction()
+        {
+            UpdateMessage(Message.StateMessageEnum.Reported);
+        }
         public void DeleteAction()
         {
-            UpdateTopic(Message.StateMessageEnum.Disallow);
+            UpdateMessage(Message.StateMessageEnum.Disallow);
         }
-        public void UpdateTopic(Message.StateMessageEnum stateMessageEnum)
+        public void UpdateMessage(Message.StateMessageEnum stateMessageEnum)
         {
             if (SelectedMessage != null)
             {
