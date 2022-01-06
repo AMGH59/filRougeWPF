@@ -51,7 +51,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="Au : "></Label>
-                        <DatePicker SelectedDate="{Binding EndDate}"></DatePicker>
+                        <DatePicker SelectedDate="{Binding EndDate}" ></DatePicker>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
@@ -89,7 +89,9 @@
 
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Supprimer" Width="125" Margin="5"></Button>
+                <Button Content="Ouvert" Width="125" Margin="5" Command="{Binding OpenCommand}"></Button>
+                <Button Content="Résolu" Width="125" Margin="5" Command="{Binding ResolvedCommand}"></Button>
+                <Button Content="Supprimé" Width="125" Margin="5" Command="{Binding DeletedCommand}"></Button>
                 <Button Content="Afficher topic" Width="125" Margin="5"></Button>
             </StackPanel>
         </StackPanel>

@@ -23,7 +23,7 @@ namespace devTalksWPF.Views
         public TopicWindow()
         {
             InitializeComponent();
-            DataContext = new TopicsViewModel();
+            DataContext = new TopicsViewModel(this);
         }
     }
 }
