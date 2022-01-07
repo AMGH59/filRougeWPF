@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using static devTalksWPF.Classes.Topic;
 
 namespace devTalksWPF.ViewModels
 {
@@ -30,6 +31,7 @@ namespace devTalksWPF.ViewModels
             TopicDetailCommand = new RelayCommand(TopicDetailAction);
             StartDate = DateTime.Parse("01-01-2020");
             EndDate = DateTime.Now.AddDays(1);
+            IsFiltering = true;
             AuthorSearch = "";
             KeyWord = "";
         }
@@ -81,13 +83,24 @@ namespace devTalksWPF.ViewModels
             {
                 if (Int32.TryParse(TopicId, out int TopicIdInt))
                 {
-                    Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Id == TopicIdInt && t.Date >= StartDate && t.Date <= EndDate &&
-                    (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord)));
+                    if (IsFiltering)
+                        Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Id == TopicIdInt && t.Date >= StartDate && t.Date <= EndDate &&
+                        (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord)));
+                    else
+                        Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Id == TopicIdInt && t.Date >= StartDate && t.Date <= EndDate &&
+                        (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord) &&
+                        t.StateTopic == StateTopic));
+
                 }
                 else
                 {
-                    Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Date >= StartDate && t.Date <= EndDate &&
-                    (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord)));
+                    if(IsFiltering)
+                        Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Date >= StartDate && t.Date <= EndDate &&
+                        (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord)));
+                    else
+                        Topics = new ObservableCollection<Topic>(topicRepository.Search(t => t.Date >= StartDate && t.Date <= EndDate &&
+                        (t.Author.FirstName.Contains(AuthorSearch) || t.Author.LastName.Contains(AuthorSearch)) && t.Body.Contains(KeyWord) &&
+                        t.StateTopic==StateTopic));
                 }
                 _currentWindow.Dispatcher.Invoke(() =>
                 {
@@ -104,7 +117,8 @@ namespace devTalksWPF.ViewModels
         public string AuthorSearch { get; set; }
         public string TopicId { get; set; }
         public string KeyWord { get; set; }
-        public string StateTopics { get; set; }
+        public StateEnum StateTopic { get; set; }
+        public bool IsFiltering { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand OpenCommand { get; set; }
         public ICommand ResolvedCommand { get; set; }

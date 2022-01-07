@@ -27,6 +27,7 @@ namespace devTalksWPF.ViewModels
             EndDate = DateTime.Now.AddDays(30);
             Author = "";
             KeyWord = "";
+            IsFiltering = true;
 
             SearchCommand = new RelayCommand(SearchAction);
             DeleteCommand = new RelayCommand(DeleteAction);
@@ -47,6 +48,8 @@ namespace devTalksWPF.ViewModels
         public ICommand DeleteCommand { get; set; }
         public Message SelectedMessage { get; set; }
         public StateMessageEnum StateMessage { get; set; }
+        public bool IsFiltering { get; set; }
+
 
 
         public void SearchAction()
@@ -55,13 +58,23 @@ namespace devTalksWPF.ViewModels
             {
                 if (Int32.TryParse(MessageId, out int messageIdInt))
                 {
-                    Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
-                    (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
+                    if (IsFiltering)
+                        Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
+                        (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                    else
+                        Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
+                       (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) &&
+                       m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
                 }
                 else
                 {
-                    Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
-                    (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
+                    if (IsFiltering)
+                        Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
+                        (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                    else
+                        Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
+                       (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) &&
+                       m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
                 }
                 _currentWindow.Dispatcher.Invoke(() =>
                 {

@@ -37,7 +37,7 @@ namespace devTalksWPF.Classes
         public string Body { get => body; set => body = value; }
         public virtual List<Message> Responses { get; set; }
         public virtual List<Techno> Technos { get ; set; }
-        public StateEnum StateTopic { get; set; }
+        public StateEnum? StateTopic { get; set; }
         public DateTime Date { get => date; set => date = value; }
     }
 }

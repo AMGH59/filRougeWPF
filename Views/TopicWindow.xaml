@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:devTalksWPF.Views"
+        xmlns:local="clr-namespace:devTalksWPF.Views" xmlns:l="clr-namespace:devTalksWPF.Tools"
         mc:Ignorable="d"
         Title="TopicWindow" Height="500" Width="800">
+    <Window.Resources>
+        <l:EnumBooleanConverter x:Key="StateEnum" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -31,9 +34,10 @@
                     <Label Content="Topic Id : "></Label>
                     <TextBox  Width="60" Text="{Binding TopicId}"></TextBox>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton GroupName="StateTopic" Content="Ouvert" Margin="5" ></RadioButton>
-                        <RadioButton GroupName="StateTopic" Content="Résolu" Margin="5"></RadioButton>
-                        <RadioButton GroupName="StateTopic" Content="Fermé" Margin="5" ></RadioButton>
+                        <RadioButton Content="Ouvert" Margin="5" IsChecked="{Binding Path=StateTopic, Mode=TwoWay, Converter={StaticResource StateEnum}, ConverterParameter=InProgress}"></RadioButton>
+                        <RadioButton Content="Résolu" Margin="5" IsChecked="{Binding Path=StateTopic, Mode=TwoWay, Converter={StaticResource StateEnum}, ConverterParameter=Resolved}"></RadioButton>
+                        <RadioButton Content="Fermé" Margin="5" IsChecked="{Binding Path=StateTopic, Mode=TwoWay, Converter={StaticResource StateEnum}, ConverterParameter=Disallow}"></RadioButton>
+                        <RadioButton Content="Tout" Margin="5" IsChecked="{Binding IsFiltering}"></RadioButton>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
