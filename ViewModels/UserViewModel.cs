@@ -30,6 +30,7 @@ namespace devTalksWPF.ViewModels
             BanCommand = new RelayCommand(BanAction);
             RestoreCommand = new RelayCommand(RestoreAction);
             AdminCommand = new RelayCommand(AdminAction);
+            DetailCommand = new RelayCommand(UserDetailAction);
             StartDate = DateTime.Parse("01-01-2020");
             EndDate = DateTime.Now.AddDays(1);
             FirstName = "";
@@ -111,11 +112,21 @@ namespace devTalksWPF.ViewModels
                 });
             });
         }
+        public void UserDetailAction()
+        {
+            if (SelectedUser != null)
+            {
+                UserDetailWindow mDW = new UserDetailWindow(SelectedUser);
+                mDW.Show();
+            }
+        }
+
         public ObservableCollection<User> Users { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand BanCommand { get; set; }
         public ICommand RestoreCommand { get; set; }
         public ICommand AdminCommand { get; set; }
+        public ICommand DetailCommand { get; set; }
         public string UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
