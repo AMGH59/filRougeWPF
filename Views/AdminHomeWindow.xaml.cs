@@ -1,4 +1,5 @@
-﻿using devTalksWPF.ViewModels;
+﻿using devTalksWPF.Classes;
+using devTalksWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,10 @@ namespace devTalksWPF.Views
     /// </summary>
     public partial class AdminHomeWindow : Window
     {
-        public AdminHomeWindow()
+        public AdminHomeWindow(User loggedAdmin)
         {
             InitializeComponent();
-            DataContext = new AdminHomeViewModel();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = new AdminHomeViewModel(loggedAdmin);
         }
     }
 }

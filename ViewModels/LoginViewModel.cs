@@ -19,7 +19,6 @@ namespace devTalksWPF.ViewModels
     class LoginViewModel : ViewModelBase
     {
         private string email,erreur;
-        private Admin admin;
         LoginWindow currentLoginWindow;
         UserRepository userRepository;
 
@@ -40,8 +39,7 @@ namespace devTalksWPF.ViewModels
                 {
                     if (user != default(User))
                     {
-                        admin = new Admin();
-                        AdminHomeWindow AdminWindow = new AdminHomeWindow();
+                        AdminHomeWindow AdminWindow = new AdminHomeWindow(user);
                         AdminWindow.Show();
                         CurrentLoginWindow.Close();
                     }
@@ -58,7 +56,6 @@ namespace devTalksWPF.ViewModels
 
         public ICommand LoginCommand { get; set; }
         public string Password { private get; set; }
-        internal Admin Admin { get => admin; set => admin = value; }
         public LoginWindow CurrentLoginWindow { get => currentLoginWindow; set => currentLoginWindow = value; }
         public string Email { get => email; set => email = value; }
         public string Erreur { get => erreur; set => erreur = value; }

@@ -22,7 +22,7 @@ namespace devTalksWPF.ViewModels
         //private Forum forum;
         UserRepository userRepository;
         MessageRepository messageRepository;
-        public AdminHomeViewModel()
+        public AdminHomeViewModel(User loggedAdmin)
         {
             TopicWindowCommand = new RelayCommand(OpenTopic);
             MessageWindowCommand = new RelayCommand(OpenMessage);
@@ -33,8 +33,19 @@ namespace devTalksWPF.ViewModels
             DontBanCommand = new RelayCommand(ActionDontBanUser);
             AcceptMessageCommand = new RelayCommand(ActionAcceptMessage);
             DisallowMessageCommand = new RelayCommand(ActionDisallowMessage);
+            CloseAppCommand = new RelayCommand(ActionCloseApp);
             messageRepository = new MessageRepository(new DataContext());
             ReportedMessage = new ObservableCollection<Message>(messageRepository.Search(m => m.StateMessage == Message.StateMessageEnum.Reported));
+            LoggedAdmin = loggedAdmin;
+        }
+
+        public void ActionCloseApp()
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+            foreach (Window w in App.Current.Windows)
+                if(w!=lw)
+                    w.Close();
         }
 
         public void ActionAcceptMessage()
@@ -45,11 +56,11 @@ namespace devTalksWPF.ViewModels
                 Task.Run(() => {
                     if (messageRepository.Update(SelectedMessage))
                     {
+
                         Application.Current.Dispatcher.Invoke(() =>
                         {
                             ReportedMessage.Remove(SelectedMessage);
                         });
-
                     }
                 });
             }
@@ -125,8 +136,10 @@ namespace devTalksWPF.ViewModels
 
         public ObservableCollection<User> ReportedUsers { get; set; }
         public ObservableCollection<Message> ReportedMessage { get; set; }
+        public User LoggedAdmin { get; set; }
         public User SelectedUser { get; set; }
         public Message SelectedMessage { get; set; }
+        public string WelcomeMessage { get; set; }
         public ICommand BanCommand { get; set; }
         public ICommand DontBanCommand { get; set; }
         public ICommand TopicWindowCommand { get; set; }
@@ -134,5 +147,6 @@ namespace devTalksWPF.ViewModels
         public ICommand UserWindowCommand { get; set; }
         public ICommand DisallowMessageCommand { get; set; }
         public ICommand AcceptMessageCommand { get; set; }
+        public ICommand CloseAppCommand { get; set; }
     }
 }

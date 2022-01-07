@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace devTalksWPF.Classes
 {
-    class Admin : User
+    public class Admin : User
     {
         public Admin() : base()
         {
