@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:devTalksWPF.Views"
         mc:Ignorable="d"
-        Title="MessageDetailWindow" Height="578" Width="465">
+        Title="MessageDetailWindow" Height="578" Width="536">
     <StackPanel Margin="10">
         <StackPanel HorizontalAlignment="Left">
             <GroupBox Header="Informations Message">
@@ -14,13 +14,19 @@
                         <ListView ItemsSource="{Binding DetailMessage}" SelectedItem="{Binding SelectedMessage}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                    <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                    <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                                     <GridViewColumn Header="Utilisateur" Width="100" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
                                     <GridViewColumn Header="Topic" Width="80" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
+                                    <GridViewColumn Header="État" Width="80" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Accepter" Width="125" Margin="5" Command="{Binding AcceptCommand}"></Button>
+                            <Button Content="En attente" Width="125" Margin="5" Command="{Binding ReportCommand}"></Button>
+                            <Button Content="Supprimer" Width="125" Margin="5" Command="{Binding DeleteCommand}"></Button>
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Margin="10">
@@ -29,13 +35,13 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="5">
                                         <Label Content="ID"></Label>
-                                        <TextBox Text="{Binding Topic.Id}" Width="80"></TextBox>
+                                        <TextBox Text="{Binding Topic.Id}" Width="100"></TextBox>
                                         <Label Content="Date"></Label>
-                                        <TextBox Text="{Binding Topic.Date}" Width="150"></TextBox>
+                                        <TextBox Text="{Binding Topic.Date}" Width="220"></TextBox>
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Left">
                                         <Label Content="Question"></Label>
-                                        <TextBox Text="{Binding Topic.Question}" Width="350"></TextBox>
+                                        <TextBox Text="{Binding Topic.Question}" Width="380"></TextBox>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
@@ -62,7 +68,7 @@
                 </StackPanel>
             </GroupBox>
         </StackPanel>
-        
+
         <StackPanel Margin="10">
             <TextBox Height="190" Text="{Binding Body}"></TextBox>
         </StackPanel>

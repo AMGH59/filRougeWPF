@@ -73,13 +73,13 @@
             <ListView ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Id" Width="60" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
                         <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
                         <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
                         <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding User.FirstName}"></GridViewColumn>
                         <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding User.LastName}"></GridViewColumn>
                         <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding User.Email}"></GridViewColumn>
-                        <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                        <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                         <GridViewColumn Header="Topic Id" Width="50" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
                     </GridView>
                 </ListView.View>

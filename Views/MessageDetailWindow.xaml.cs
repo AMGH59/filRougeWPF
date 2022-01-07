@@ -24,7 +24,7 @@ namespace devTalksWPF.Views
         public MessageDetailWindow(Message message)
         {
             InitializeComponent();
-            DataContext = new MessageDetailViewModel(message);
+            DataContext = new MessageDetailViewModel(message, this);
         }
     }
 }
