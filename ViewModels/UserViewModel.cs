@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static devTalksWPF.Classes.User;
+
 
 namespace devTalksWPF.ViewModels
 {
@@ -76,6 +78,7 @@ namespace devTalksWPF.ViewModels
                         Users.Remove(TempUser);
                         Users.Insert(i, TempUser);
                         _ahvm.ReportedUsers = new ObservableCollection<User>(_userRepository.Search(u => u.StateUser == User.StateEnum.Waiting));
+                        _ahvm.RaisePropertyChanged("ReportedUsers");
                     });
                 }
             });
@@ -86,13 +89,21 @@ namespace devTalksWPF.ViewModels
             {
                 if (Int32.TryParse(UserId, out int UserIdInt))
                 {
-                    Users = new ObservableCollection<User>(_userRepository.Search(u => u.Id == UserIdInt && u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
-                    u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName)));
+                    if (IsFiltering)
+                        Users = new ObservableCollection<User>(_userRepository.Search(u => u.Id == UserIdInt && u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
+                        u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName)));
+                    else
+                        Users = new ObservableCollection<User>(_userRepository.Search(u => u.Id == UserIdInt && u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
+                        u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName) && u.StateUser==StateUser));
                 }
                 else
                 {
-                    Users = new ObservableCollection<User>(_userRepository.Search(u => u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
-                    u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName)));
+                    if (IsFiltering)
+                        Users = new ObservableCollection<User>(_userRepository.Search(u => u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
+                        u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName)));
+                    else
+                        Users = new ObservableCollection<User>(_userRepository.Search(u => u.RegistrationDate >= StartDate && u.RegistrationDate <= EndDate &&
+                        u.FirstName.Contains(FirstName) && u.LastName.Contains(LastName) && u.StateUser==StateUser));
                 }
                 _currentWindow.Dispatcher.Invoke(() =>
                 {
@@ -112,6 +123,8 @@ namespace devTalksWPF.ViewModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public User SelectedUser { get; set; }
+        public StateEnum StateUser { get; set; }
+        public bool IsFiltering { get; set; }
 
     }
 }
