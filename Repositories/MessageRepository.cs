@@ -42,7 +42,7 @@ namespace devTalksWPF.Repositories
 
         public IEnumerable<Message> Search(Expression<Func<Message, bool>> predicate)
         {
-            return _dataContext.Messages.Where(predicate).ToList();
+            return _dataContext.Messages.Include(m => m.Topic).Include(m => m.User).Where(predicate).ToList();
 
         }
 

@@ -70,20 +70,20 @@
                 <StackPanel>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel>
-                        <ListView ItemsSource="{Binding ReportedMessage}" SelectedItem="{Binding SelectedMessage}" Height="150">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                    <GridViewColumn Header="Date" Width="170" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
-                                    <GridViewColumn Header="Auteur" Width="50" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
-                                    <GridViewColumn Header="Topic" Width="50" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
-                                    <GridViewColumn Header="Détail" Width="350"></GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                </StackPanel>
-                </ScrollViewer>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ListView ItemsSource="{Binding ReportedMessage}" SelectedItem="{Binding SelectedMessage}" Height="150">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                        <GridViewColumn Header="Date" Width="60" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                        <GridViewColumn Header="Utilisateur" Width="150" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
+                                        <GridViewColumn Header="Topic" Width="150" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
+                                        <GridViewColumn Header="Détail" Width="215" DisplayMemberBinding="{Binding Body}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Content="Valider" Margin="5" Width="100" Command="{Binding DisallowMessageCommand}"></Button>
                         <Button Content="Refuser" Margin="5" Width="100" Command="{Binding AcceptMessageCommand}"></Button>
                         <Button Content="Mettre en attente" Margin="5" Width="100"></Button>

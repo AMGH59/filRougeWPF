@@ -33,6 +33,7 @@ namespace devTalksWPF.ViewModels
             DeleteCommand = new RelayCommand(DeleteAction);
             ReportCommand = new RelayCommand(ReportAction);
             AcceptCommand = new RelayCommand(AcceptAction);
+            DetailCommand = new RelayCommand(MessageDetailAction);
         }
 
         public ObservableCollection<Message> Messages { get; set; }
@@ -46,6 +47,7 @@ namespace devTalksWPF.ViewModels
         public ICommand AcceptCommand { get; set; }
         public ICommand ReportCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand DetailCommand { get; set; }
         public Message SelectedMessage { get; set; }
         public StateMessageEnum StateMessage { get; set; }
         public bool IsFiltering { get; set; }
@@ -113,6 +115,15 @@ namespace devTalksWPF.ViewModels
                     });
                 }
             });
+        }
+
+        public void MessageDetailAction()
+        {
+            if (SelectedMessage != null)
+            {
+                MessageDetailWindow mDW = new MessageDetailWindow(SelectedMessage);
+                mDW.Show();
+            }
         }
 
     }

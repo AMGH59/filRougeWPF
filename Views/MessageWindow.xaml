@@ -98,7 +98,7 @@
                 <Button Content="Accepter" Width="125" Margin="5" Command="{Binding AcceptCommand}"></Button>
                 <Button Content="En attente" Width="125" Margin="5" Command="{Binding ReportCommand}"></Button>
                 <Button Content="Supprimer" Width="125" Margin="5" Command="{Binding DeleteCommand}"></Button>
-                <Button Content="Afficher message" Width="125" Margin="5"></Button>
+                <Button Content="Afficher message" Width="125" Margin="5" Command="{Binding DetailCommand}"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

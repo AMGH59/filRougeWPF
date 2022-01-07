@@ -1,0 +1,70 @@
+﻿<Window x:Class="devTalksWPF.Views.MessageDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:devTalksWPF.Views"
+        mc:Ignorable="d"
+        Title="MessageDetailWindow" Height="578" Width="465">
+    <StackPanel Margin="10">
+        <StackPanel HorizontalAlignment="Left">
+            <GroupBox Header="Informations Message">
+                <StackPanel>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding DetailMessage}" SelectedItem="{Binding SelectedMessage}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                    <GridViewColumn Header="Utilisateur" Width="100" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
+                                    <GridViewColumn Header="Topic" Width="80" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Margin="10">
+                        <StackPanel>
+                            <GroupBox Header="Référence Topic">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <Label Content="ID"></Label>
+                                        <TextBox Text="{Binding Topic.Id}" Width="80"></TextBox>
+                                        <Label Content="Date"></Label>
+                                        <TextBox Text="{Binding Topic.Date}" Width="150"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Question"></Label>
+                                        <TextBox Text="{Binding Topic.Question}" Width="350"></TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Header="Référence Utilisateur">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <Label Content="ID"></Label>
+                                        <TextBox Text="{Binding User.Id}" Width="70"></TextBox>
+                                        <Label Content="Prénom"></Label>
+                                        <TextBox Text="{Binding User.FirstName}" Width="100"></TextBox>
+                                        <Label Content="Nom"></Label>
+                                        <TextBox Text="{Binding User.LastName}" Width="100"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Email"></Label>
+                                        <TextBox Text="{Binding User.Email}" Width="250"></TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        
+        <StackPanel Margin="10">
+            <TextBox Height="190" Text="{Binding Body}"></TextBox>
+        </StackPanel>
+    </StackPanel>
+</Window>
