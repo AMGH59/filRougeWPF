@@ -116,7 +116,7 @@ namespace devTalksWPF.ViewModels
         {
             if (SelectedUser != null)
             {
-                UserDetailWindow mDW = new UserDetailWindow(SelectedUser);
+                UserDetailWindow mDW = new UserDetailWindow(SelectedUser, _ahvm);
                 mDW.Show();
             }
         }

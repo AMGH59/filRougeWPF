@@ -68,9 +68,20 @@
                 </StackPanel>
             </GroupBox>
         </StackPanel>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock  Text="{Binding Body}" TextWrapping="Wrap" Height="190"></TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
 
-        <StackPanel Margin="10">
-            <TextBox Height="190" Text="{Binding Body}"></TextBox>
-        </StackPanel>
     </StackPanel>
 </Window>

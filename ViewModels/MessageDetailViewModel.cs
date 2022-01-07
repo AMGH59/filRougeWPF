@@ -16,14 +16,16 @@ namespace devTalksWPF.ViewModels
 {
     public class MessageDetailViewModel : ViewModelBase
     {
+        AdminHomeViewModel adminHomeViewModel;
         MessageDetailWindow _currentWindow;
         MessageRepository messageRepository;
         TopicRepository topicRepository;
         private Message message;
         private Topic topic;
 
-        public MessageDetailViewModel(Message message, MessageDetailWindow currentWindow)
+        public MessageDetailViewModel(Message message, MessageDetailWindow currentWindow, AdminHomeViewModel aHVM)
         {
+            adminHomeViewModel = aHVM;
             _currentWindow = currentWindow;
             topicRepository = new TopicRepository(new DataContext());
             messageRepository = new MessageRepository(new DataContext());
@@ -79,6 +81,8 @@ namespace devTalksWPF.ViewModels
                         int i = DetailMessage.IndexOf(SelectedMessage);
                         DetailMessage.Remove(SelectedMessage);
                         DetailMessage.Insert(i, TempMessage);
+                        adminHomeViewModel.ReportedMessage = new ObservableCollection<Message>(messageRepository.Search(m => m.StateMessage == Message.StateMessage));
+                        adminHomeViewModel.RaisePropertyChanged("ReportedMessage");
                     });
                 }
             });

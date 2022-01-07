@@ -20,10 +20,10 @@ namespace devTalksWPF.Views
     /// </summary>
     public partial class UserDetailWindow : Window
     {
-        public UserDetailWindow(User user)
+        public UserDetailWindow(User user, AdminHomeViewModel ahvm)
         {
             InitializeComponent();
-            DataContext = new UserDetailViewModel(user, this);
+            DataContext = new UserDetailViewModel(user, this, ahvm);
         }
     }
 }

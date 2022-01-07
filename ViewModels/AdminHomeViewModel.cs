@@ -34,6 +34,8 @@ namespace devTalksWPF.ViewModels
             AcceptMessageCommand = new RelayCommand(ActionAcceptMessage);
             DisallowMessageCommand = new RelayCommand(ActionDisallowMessage);
             CloseAppCommand = new RelayCommand(ActionCloseApp);
+            AccessUserReportedCommand = new RelayCommand(AccessUserAction);
+            AccessMessageReportedCommand = new RelayCommand(AccessMessageAction);
             messageRepository = new MessageRepository(new DataContext());
             ReportedMessage = new ObservableCollection<Message>(messageRepository.Search(m => m.StateMessage == Message.StateMessageEnum.Reported));
             LoggedAdmin = loggedAdmin;
@@ -125,13 +127,34 @@ namespace devTalksWPF.ViewModels
         }
         public void OpenMessage()
         {
-            MessageWindow mWindow = new MessageWindow();
+            MessageWindow mWindow = new MessageWindow(this);
             mWindow.Show();
         }
         public void OpenUser()
         {
             UserWindow uWindow = new UserWindow(this);
             uWindow.Show();
+        }
+
+        public void AccessMessageAction()
+        {
+            if (SelectedMessage != null)
+            {
+                MessageDetailWindow mDW = new MessageDetailWindow(SelectedMessage, this);
+                AccessAction(mDW);
+            }
+        }
+        public void AccessUserAction()
+        {
+            if (SelectedUser != null)
+            {
+                UserDetailWindow uDW = new UserDetailWindow(SelectedUser, this);
+                AccessAction(uDW);
+            }
+        }
+        public void AccessAction(Window window)
+        {
+            window.Show();
         }
 
         public ObservableCollection<User> ReportedUsers { get; set; }
@@ -148,5 +171,7 @@ namespace devTalksWPF.ViewModels
         public ICommand DisallowMessageCommand { get; set; }
         public ICommand AcceptMessageCommand { get; set; }
         public ICommand CloseAppCommand { get; set; }
+        public ICommand AccessUserReportedCommand { get; set; }
+        public ICommand AccessMessageReportedCommand { get; set; }
     }
 }

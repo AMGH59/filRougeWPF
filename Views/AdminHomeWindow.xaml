@@ -59,7 +59,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Content="Valider" Margin="5" Width="100" Command="{Binding BanCommand}"></Button>
                         <Button Content="Refuser" Margin="5" Width="100" Command="{Binding DontBanCommand}"></Button>
-                        <Button Content="Mettre en attente" Margin="5" Width="100"></Button>
+                        <Button Content="Afficher les détails" Margin="5" Width="100" Command="{Binding AccessUserReportedCommand}"></Button>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
@@ -92,7 +92,7 @@
             </GroupBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
-            <Button Content="Afficher les détails" Margin="5"></Button>
+            <Button Content="Afficher les détails" Margin="5" Command="{Binding AccessMessageReportedCommand}"></Button>
         </StackPanel>
     </Grid>
 </Window>

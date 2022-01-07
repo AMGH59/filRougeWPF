@@ -21,10 +21,10 @@ namespace devTalksWPF.Views
     /// </summary>
     public partial class MessageDetailWindow : Window
     {
-        public MessageDetailWindow(Message message)
+        public MessageDetailWindow(Message message, AdminHomeViewModel ahvm)
         {
             InitializeComponent();
-            DataContext = new MessageDetailViewModel(message, this);
+            DataContext = new MessageDetailViewModel(message, this, ahvm);
         }
     }
 }

@@ -16,10 +16,12 @@ namespace devTalksWPF.ViewModels
 {
     public class MessageViewModel : ViewModelBase
     {
+        private AdminHomeViewModel adminHomeViewModel;
         MessageRepository messageRepository;
         MessageWindow _currentWindow;
-        public MessageViewModel(MessageWindow currentWindow)
+        public MessageViewModel(MessageWindow currentWindow, AdminHomeViewModel aHVM)
         {
+            adminHomeViewModel = aHVM;
             _currentWindow = currentWindow;
             messageRepository = new MessageRepository(new DataContext());
             Messages = new ObservableCollection<Message>(messageRepository.GetAll());
@@ -121,7 +123,7 @@ namespace devTalksWPF.ViewModels
         {
             if (SelectedMessage != null)
             {
-                MessageDetailWindow mDW = new MessageDetailWindow(SelectedMessage);
+                MessageDetailWindow mDW = new MessageDetailWindow(SelectedMessage, adminHomeViewModel);
                 mDW.Show();
             }
         }
