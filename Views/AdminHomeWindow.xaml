@@ -73,7 +73,7 @@
                                     <GridViewColumn Header="Date" Width="60" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                                     <GridViewColumn Header="Utilisateur" Width="150" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
                                     <GridViewColumn Header="Topic" Width="150" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
-                                    <GridViewColumn Header="Détail" Width="215"></GridViewColumn>
+                                    <GridViewColumn Header="Détail" Width="215" DisplayMemberBinding="{Binding Body}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
