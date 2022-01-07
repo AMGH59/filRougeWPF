@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:devTalksWPF.Views" xmlns:l="clr-namespace:devTalksWPF.Tools"
         mc:Ignorable="d"
-        Title="TopicWindow" Height="500" Width="800">
+        Title="TopicWindow" Height="500" Width="900">
     <Window.Resources>
         <l:EnumBooleanConverter x:Key="StateEnum" />
     </Window.Resources>
@@ -74,13 +74,13 @@
                 <ListView ItemsSource="{Binding Topics}" SelectedItem="{Binding SelectedTopic}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                            <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
-                            <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
-                            <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding Author.FirstName}"></GridViewColumn>
-                            <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding Author.LastName}"></GridViewColumn>
-                            <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding Author.Email}"></GridViewColumn>
-                            <GridViewColumn Header="Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                            <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                            <GridViewColumn Header="Statut" Width="100" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
+                            <GridViewColumn Header="Auteur" Width="50" DisplayMemberBinding="{Binding AuthorId}"></GridViewColumn>
+                            <GridViewColumn Header="Prénom" Width="120" DisplayMemberBinding="{Binding Author.FirstName}"></GridViewColumn>
+                            <GridViewColumn Header="Nom" Width="120" DisplayMemberBinding="{Binding Author.LastName}"></GridViewColumn>
+                            <GridViewColumn Header="Email" Width="170" DisplayMemberBinding="{Binding Author.Email}"></GridViewColumn>
+                            <GridViewColumn Header="Date" Width="170" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
