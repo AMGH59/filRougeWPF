@@ -28,7 +28,7 @@ namespace devTalksWPF.ViewModels
             topicRepository = new TopicRepository(new DataContext());
             messageRepository = new MessageRepository(new DataContext());
 
-            Topics = new ObservableCollection<Topic>(topicRepository.GetAll().Where(t => t.Id == message.Id));
+            Topics = new ObservableCollection<Topic>(topicRepository.GetAll().Where(t => t.Id == message.Id_topic));
             Topic = Topics.FirstOrDefault(t => t.Id == message.Id_topic);
             DetailMessage = new ObservableCollection<Message>(messageRepository.GetAll().Where(t => t.Id == message.Id));
             Body = message.Body;
