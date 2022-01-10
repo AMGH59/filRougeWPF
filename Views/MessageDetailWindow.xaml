@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:devTalksWPF.Views"
         mc:Ignorable="d"
-        Title="MessageDetailWindow" Height="578" Width="536">
+        Title="MessageDetailWindow" Height="580" Width="575">
     <StackPanel Margin="10">
         <StackPanel HorizontalAlignment="Left">
             <GroupBox Header="Informations Message">
@@ -22,11 +22,11 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Content="Accepter" Width="125" Margin="5" Command="{Binding AcceptCommand}"></Button>
                             <Button Content="En attente" Width="125" Margin="5" Command="{Binding ReportCommand}"></Button>
                             <Button Content="Supprimer" Width="125" Margin="5" Command="{Binding DeleteCommand}"></Button>
-                        </StackPanel>
+                        </StackPanel>-->
                     </StackPanel>
 
                     <StackPanel HorizontalAlignment="Center" Margin="10">

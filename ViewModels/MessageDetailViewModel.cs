@@ -81,7 +81,7 @@ namespace devTalksWPF.ViewModels
                         int i = DetailMessage.IndexOf(SelectedMessage);
                         DetailMessage.Remove(SelectedMessage);
                         DetailMessage.Insert(i, TempMessage);
-                        adminHomeViewModel.ReportedMessage = new ObservableCollection<Message>(messageRepository.Search(m => m.StateMessage == Message.StateMessage));
+                        adminHomeViewModel.ReportedMessage = new ObservableCollection<Message>(messageRepository.Search(m => m.StateMessage == Message.StateMessageEnum.Reported));
                         adminHomeViewModel.RaisePropertyChanged("ReportedMessage");
                     });
                 }
