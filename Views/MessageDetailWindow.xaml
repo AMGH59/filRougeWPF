@@ -76,7 +76,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <TextBlock  Text="{Binding Body}" TextWrapping="Wrap" Height="190"></TextBlock>
                 </StackPanel>
