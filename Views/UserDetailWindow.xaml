@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:devTalksWPF.Views"
+        xmlns:local="clr-namespace:devTalksWPF.Views" xmlns:l="clr-namespace:devTalksWPF.Tools"
         mc:Ignorable="d"
         Title="UserDetailWindow" Height="691" Width="1291">
+    <Window.Resources>
+        <l:FormatConverter x:Key="formatConverter"/>
+    </Window.Resources>
     <StackPanel Margin="10">
         <StackPanel HorizontalAlignment="Center">
             <GroupBox Header="Informations Utilisateur">
@@ -34,17 +37,19 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <GroupBox Header="Liste des Topics créés par Utilisateur">
                 <StackPanel Orientation="Horizontal">
-                    <ListView ItemsSource="{Binding DetailUserTopic}" SelectedItem="{Binding SelectedUserTopic}" Height="250">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                <GridViewColumn Header="Date" Width="220" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
-                                <GridViewColumn Header="Question" Width="220" DisplayMemberBinding="{Binding Question}"></GridViewColumn>
-                                <GridViewColumn Header="Texte" Width="200" DisplayMemberBinding="{Binding Body}"></GridViewColumn>
-                                <GridViewColumn Header="Statut" Width="100" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding DetailUserTopic}" SelectedItem="{Binding SelectedUserTopic}" Height="250">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="220" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                    <GridViewColumn Header="Question" Width="220" DisplayMemberBinding="{Binding Question}"></GridViewColumn>
+                                    <GridViewColumn Header="Texte" Width="200" DisplayMemberBinding="{Binding Body, Converter={StaticResource formatConverter}}"></GridViewColumn>
+                                    <GridViewColumn Header="Statut" Width="100" DisplayMemberBinding="{Binding StateTopic}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
                     <StackPanel VerticalAlignment="Center">
                         <Button Content="Accéder aux détails" Width="125" Margin="5" Command="{Binding AccessTopicCommand}"></Button>
                     </StackPanel>
@@ -55,15 +60,17 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <GroupBox Header="Liste des Réponses écrites" Height="250">
                 <StackPanel Orientation="Horizontal">
-                    <ListView ItemsSource="{Binding DetailUserMessage}" SelectedItem="{Binding SelectedUserMessage}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                <GridViewColumn Header="Date" Width="250" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
-                                <GridViewColumn Header="Texte" Width="400" DisplayMemberBinding="{Binding Body}"></GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding DetailUserMessage}" SelectedItem="{Binding SelectedUserMessage}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="250" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                                    <GridViewColumn Header="Texte" Width="400" DisplayMemberBinding="{Binding Body, Converter={StaticResource formatConverter}}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
                     <StackPanel VerticalAlignment="Center">
                         <Button Content="Accéder aux détails" Width="125" Margin="5" Command="{Binding AccessMessageCommand}"></Button>
                     </StackPanel>

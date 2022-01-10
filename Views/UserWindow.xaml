@@ -104,7 +104,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="Bannir" Width="125" Margin="5" Command="{Binding BanCommand}"></Button>
                 <Button Content="Réhabiliter" Width="125" Margin="5" Command="{Binding RestoreCommand}"></Button>
-                <Button Content="Rendre Admin" Width="125" Margin="5" Command="{Binding AdminCommand}"></Button>
+                <Button Content="Admin" Width="125" Margin="5" Command="{Binding AdminCommand}"></Button>
                 <Button Content="Afficher Détails" Width="125" Margin="5" Command="{Binding DetailCommand}"></Button>
             </StackPanel>
         </StackPanel>

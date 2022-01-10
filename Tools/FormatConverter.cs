@@ -13,7 +13,16 @@ namespace devTalksWPF.Tools
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
-                return value.ToString().Substring(0, 20) + "...";
+            {
+                if (value.ToString().Length > 50)
+                {
+                    return value.ToString().Substring(0, 50) + "...";
+                }
+                else
+                {
+                    return value.ToString();
+                }
+            }
             else
                 return "";
         }

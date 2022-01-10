@@ -32,7 +32,7 @@
             <Button Content="Déconnexion" Command="{Binding CloseAppCommand}"></Button>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-            <TextBox Text="" Width="300"></TextBox>
+            <!--<TextBox Text="" Width="300"></TextBox>-->
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0">
