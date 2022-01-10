@@ -69,23 +69,24 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <ListView ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="60" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                        <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
-                        <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
-                        <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding User.FirstName}"></GridViewColumn>
-                        <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding User.LastName}"></GridViewColumn>
-                        <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding User.Email}"></GridViewColumn>
-                        <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
-                        <GridViewColumn Header="Topic Id" Width="50" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </StackPanel>
-
+        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+                <ListView ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" Width="60" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                            <GridViewColumn Header="Statut" Width="60" DisplayMemberBinding="{Binding StateMessage}"></GridViewColumn>
+                            <GridViewColumn Header="User Id" Width="60" DisplayMemberBinding="{Binding Id_user}"></GridViewColumn>
+                            <GridViewColumn Header="User Surname" Width="120" DisplayMemberBinding="{Binding User.FirstName}"></GridViewColumn>
+                            <GridViewColumn Header="User Name" Width="110" DisplayMemberBinding="{Binding User.LastName}"></GridViewColumn>
+                            <GridViewColumn Header="Email" Width="130" DisplayMemberBinding="{Binding User.Email}"></GridViewColumn>
+                            <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                            <GridViewColumn Header="Topic Id" Width="50" DisplayMemberBinding="{Binding Id_topic}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
         <!--<StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Supprimer" Width="125"></Button>
         </StackPanel>

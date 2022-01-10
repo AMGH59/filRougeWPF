@@ -35,13 +35,13 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="5">
                                         <Label Content="ID"></Label>
-                                        <TextBox Text="{Binding Topic.Id}" Width="100"></TextBox>
+                                        <TextBox Text="{Binding Topic.Id}" Width="100" IsReadOnly="True"></TextBox>
                                         <Label Content="Date"></Label>
-                                        <TextBox Text="{Binding Topic.Date}" Width="220"></TextBox>
+                                        <TextBox Text="{Binding Topic.Date}" Width="220" IsReadOnly="True"></TextBox>
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Left">
                                         <Label Content="Question"></Label>
-                                        <TextBox Text="{Binding Topic.Question}" Width="380"></TextBox>
+                                        <TextBox Text="{Binding Topic.Question}" Width="380" IsReadOnly="True"></TextBox>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
@@ -51,15 +51,15 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="5">
                                         <Label Content="ID"></Label>
-                                        <TextBox Text="{Binding User.Id}" Width="70"></TextBox>
+                                        <TextBox Text="{Binding User.Id}" Width="70" IsReadOnly="True"></TextBox>
                                         <Label Content="Prénom"></Label>
-                                        <TextBox Text="{Binding User.FirstName}" Width="100"></TextBox>
+                                        <TextBox Text="{Binding User.FirstName}" Width="100" IsReadOnly="True"></TextBox>
                                         <Label Content="Nom"></Label>
-                                        <TextBox Text="{Binding User.LastName}" Width="100"></TextBox>
+                                        <TextBox Text="{Binding User.LastName}" Width="100" IsReadOnly="True"></TextBox>
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Left">
                                         <Label Content="Email"></Label>
-                                        <TextBox Text="{Binding User.Email}" Width="250"></TextBox>
+                                        <TextBox Text="{Binding User.Email}" Width="250" IsReadOnly="True"></TextBox>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
@@ -76,7 +76,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <TextBlock  Text="{Binding Body}" TextWrapping="Wrap" Height="190"></TextBlock>
                 </StackPanel>
