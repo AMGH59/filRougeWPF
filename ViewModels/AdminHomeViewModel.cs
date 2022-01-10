@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using devTalksWPF.Classes;
 using devTalksWPF.Repositories;
+using devTalksWPF.Tools;
 using devTalksWPF.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -163,6 +164,7 @@ namespace devTalksWPF.ViewModels
         public User SelectedUser { get; set; }
         public Message SelectedMessage { get; set; }
         public string WelcomeMessage { get; set; }
+        public string Body { get; set; }
         public ICommand BanCommand { get; set; }
         public ICommand DontBanCommand { get; set; }
         public ICommand TopicWindowCommand { get; set; }

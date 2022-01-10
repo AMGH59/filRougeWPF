@@ -46,9 +46,13 @@ namespace devTalksWPF.ViewModels
         }
         public void AdminAction()
         {
-            if (SelectedUser != null)
+            if (SelectedUser != null && SelectedUser.IsAdmin == false)
             {
                 SelectedUser.IsAdmin = true;
+            }
+            else
+            {
+                SelectedUser.IsAdmin = false;
             }
             Task.Run(() =>
             {
@@ -57,6 +61,7 @@ namespace devTalksWPF.ViewModels
                     User TempUser = SelectedUser;
                     _currentWindow.Dispatcher.Invoke(() =>
                     {
+                        Users = new ObservableCollection<User>(_userRepository.GetAll());
                         RaisePropertyChanged("Users");
                     });
                 }
