@@ -64,20 +64,20 @@ namespace devTalksWPF.ViewModels
                 {
                     if (IsFiltering)
                         Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
-                        (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                        (m.User.FirstName.Contains(Author) || m.User.LastName.Contains(Author) || m.User.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
                     else
                         Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Id == messageIdInt && m.Date >= StartDate && m.Date <= EndDate &&
-                       (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) &&
+                       (m.User.FirstName.Contains(Author) || m.User.LastName.Contains(Author) || m.User.Email.Contains(Author)) &&
                        m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
                 }
                 else
                 {
                     if (IsFiltering)
                         Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
-                        (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
+                        (m.User.FirstName.Contains(Author) || m.User.LastName.Contains(Author) || m.User.Email.Contains(Author)) && m.Body.Contains(KeyWord)));
                     else
                         Messages = new ObservableCollection<Message>(messageRepository.Search(m => m.Date >= StartDate && m.Date <= EndDate &&
-                       (m.Topic.Author.FirstName.Contains(Author) || m.Topic.Author.LastName.Contains(Author) || m.Topic.Author.Email.Contains(Author)) &&
+                       (m.User.FirstName.Contains(Author) || m.User.LastName.Contains(Author) || m.User.Email.Contains(Author)) &&
                        m.Body.Contains(KeyWord) && m.StateMessage == StateMessage));
                 }
                 _currentWindow.Dispatcher.Invoke(() =>
