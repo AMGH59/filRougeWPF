@@ -1,5 +1,5 @@
 
-# fil-rougeWPF
+# filRougeWPF
 
 This project is an admin version of [fil-rouge-APS](https://github.com/AMGH59/fil-rouge-ASP) project (support platform between registered users).  
 This application will allow to manage users registered, questions and answers posted too.  
@@ -25,7 +25,7 @@ As we said, this project is linked to [fil-rouge-APS](https://github.com/AMGH59/
 Clone the project
 
 ```bash
-  git clone https://github.com/AMGH59/fil-rougeWPF
+  git clone https://github.com/AMGH59/filRougeWPF
 ```
 
 Go to the project directory
